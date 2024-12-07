@@ -1,24 +1,27 @@
-#include <WiFiManager.h>
+#include <WiFi.h>
 #include <Adafruit_MPU6050.h>
 #include <Adafruit_Sensor.h>
 #include <PubSubClient.h>  
 #include <Wire.h>
 #include <ArduinoJson.h>
 
+const char* ssid = "FazOElon";
+const char* password =  "papainoel"; 
+const char* mqtt_server = "192.168.1.124";
 long lastTemp = 0;
-const char* mqtt_server = "192.168.0.16";
 
 Adafruit_MPU6050 mpu;
+
 WiFiClient espClient;
 PubSubClient client(espClient);
 
 void setup()
 {
   Serial.begin(115200);
-  
+
   while (!Serial)
     delay(10);
-    
+  
   configureMpu6050();
     
   setup_wifi();
@@ -34,6 +37,7 @@ void loop()
 
   if (!client.connected())
   {
+    Serial.println("Client not connected");
     reconnect();
   }
   
@@ -57,10 +61,9 @@ void loop()
     String output;
     serializeJson(doc, output);
     
-    client.publish("event", (char*)output.c_str());
+    client.publish("sensor/data", (char*)output.c_str());
   }
 }
-
 void callback(char* topic, byte* payload, unsigned int length)
 {
   Serial.print("Mensagem recebida[");
@@ -74,17 +77,35 @@ void callback(char* topic, byte* payload, unsigned int length)
 }
 
 void setup_wifi() {
-    WiFiManager wifiManager;
+  delay(500);
+  Serial.println();
+  Serial.print("Conectado a rede: ");
+  Serial.println(ssid);
+  Serial.println(password);
 
-    // Automatically connect or set up a portal
-    if (!wifiManager.autoConnect("ESP32_AP")) {
-        Serial.println("Failed to connect. Restarting...");
-        ESP.restart();
+  WiFi.begin(ssid, password);
+
+  Serial.print("ALOU");
+
+  unsigned long startAttemptTime = millis();
+
+  Serial.print("ALOU");
+
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.print("ALOU");
+    delay(500); 
+    Serial.print("ALOU");
+    if (millis() - startAttemptTime > 10000) { 
+      Serial.println("WiFi connection timeout.");
+      ESP.restart();
     }
+    Serial.print("ALOU");
+  }
 
-    // Wi-Fi is connected
-    Serial.println("WiFi connected");
-    Serial.println(WiFi.localIP());
+  Serial.println("");
+  Serial.println("WiFi Conectado");
+  Serial.println("IP: ");
+  Serial.println(WiFi.localIP());
 }
 
 void reconnect()
@@ -95,10 +116,10 @@ void reconnect()
     if (client.connect("ESP32Client"))
     {
       Serial.println("Conectado"); 
-      client.publish("event", "Giroscópio acelerômetro conectado.");
+      client.publish("sensor/data", "Giroscópio acelerômetro conectado.");
       
-      // Envia a mensagem ao servidor MQTT
-      client.subscribe("event");
+      //Envia a mensagem ao servidor MQTT
+      client.subscribe("sensor/data");
     }
     else
     {
@@ -116,7 +137,7 @@ void configureMpu6050()
   if (!mpu.begin()) {
     Serial.println("Falha ao encontrar MPU6050");
     while (1) {
-      delay(10);
+      delay(1000);
     }
   }
   Serial.println("MPU6050 encontrado!");
