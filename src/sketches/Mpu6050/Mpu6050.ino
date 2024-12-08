@@ -142,10 +142,9 @@ void configureMpu6050()
   }
   Serial.println("MPU6050 encontrado!");
 
-  mpu.setAccelerometerRange(MPU6050_RANGE_8_G);
+  mpu.setAccelerometerRange(MPU6050_RANGE_2_G);
   Serial.print("Intervalo do acelerômetro: +- ");
   Serial.print(mpu.getAccelerometerRange());
-  Serial.println(" 8G");
   
   mpu.setGyroRange(MPU6050_RANGE_500_DEG);
   Serial.print("Intervalo do giroscópio: +- ");

@@ -1,6 +1,9 @@
+db = db.getSiblingDB('sensor');
+
 db.createUser({
-    user: "admin",
-    pwd: "password",
-    roles: [{ role: "readWrite", db: "mqtt_data" }]
-  });
-  
+  user: "sensorAdmin",
+  pwd: "sensorPassword",
+  roles: [
+    { role: "dbOwner", db: "sensor" }
+  ]
+});

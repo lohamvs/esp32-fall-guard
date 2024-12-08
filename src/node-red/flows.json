@@ -37,6 +37,16 @@
         "sessionExpiry": ""
     },
     {
+        "id": "4620b4b43bdc0606",
+        "type": "mongodb",
+        "hostname": "mongodb",
+        "topology": "direct",
+        "connectOptions": "",
+        "port": "27017",
+        "db": "sensor",
+        "name": "MongoDB"
+    },
+    {
         "id": "199df355e295d45f",
         "type": "mqtt in",
         "z": "f77cf9fde1cf79bb",
@@ -62,7 +72,7 @@
         "type": "function",
         "z": "f77cf9fde1cf79bb",
         "name": "function 1",
-        "func": "// Add a timestamp\nmsg.payload.timestamp = new Date().toISOString();\n\n// Prepare the output for MongoDB\nreturn msg;\n",
+        "func": "msg.payload.timestamp = new Date().toISOString();\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -73,7 +83,8 @@
         "y": 260,
         "wires": [
             [
-                "fcc3eaa333465f7d"
+                "fcc3eaa333465f7d",
+                "e5b9d765e1dda3d2"
             ]
         ]
     },
@@ -89,8 +100,23 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 650,
+        "x": 660,
         "y": 240,
+        "wires": []
+    },
+    {
+        "id": "e5b9d765e1dda3d2",
+        "type": "mongodb out",
+        "z": "f77cf9fde1cf79bb",
+        "mongodb": "4620b4b43bdc0606",
+        "name": "persists to MongoDB",
+        "collection": "mpu6050",
+        "payonly": true,
+        "upsert": false,
+        "multi": false,
+        "operation": "store",
+        "x": 700,
+        "y": 280,
         "wires": []
     }
 ]
