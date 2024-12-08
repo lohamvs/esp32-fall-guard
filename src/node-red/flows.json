@@ -47,6 +47,145 @@
         "name": "MongoDB"
     },
     {
+        "id": "30d653747179b212",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "b93b9982e8241eda",
+        "type": "ui_tab",
+        "name": "MPU6050 Data",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "9b1e2b313716964f",
+        "type": "ui_group",
+        "name": "Accelerometer",
+        "tab": "b93b9982e8241eda",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "5172b23e5fd23e6f",
+        "type": "ui_group",
+        "name": "Gyroscope",
+        "tab": "b93b9982e8241eda",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "f17b854dc50a79ed",
+        "type": "ui_group",
+        "name": "Temperature",
+        "tab": "b93b9982e8241eda",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
         "id": "199df355e295d45f",
         "type": "mqtt in",
         "z": "f77cf9fde1cf79bb",
@@ -60,7 +199,7 @@
         "rh": 0,
         "inputs": 0,
         "x": 330,
-        "y": 240,
+        "y": 260,
         "wires": [
             [
                 "89a19b586c0b4498"
@@ -71,7 +210,7 @@
         "id": "89a19b586c0b4498",
         "type": "function",
         "z": "f77cf9fde1cf79bb",
-        "name": "function 1",
+        "name": "Add timestamp",
         "func": "msg.payload.timestamp = new Date().toISOString();\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
@@ -79,30 +218,21 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 500,
+        "x": 520,
         "y": 260,
         "wires": [
             [
-                "fcc3eaa333465f7d",
-                "e5b9d765e1dda3d2"
+                "e5b9d765e1dda3d2",
+                "eea67cf18ac44240",
+                "4f99bcdf54ec2990",
+                "b22f188fa08f6001",
+                "87f97530ebcf6158",
+                "274877560f200da9",
+                "6da929748f9ef43a",
+                "50f503cc3a4152a0",
+                "6c936b6e5505d165"
             ]
         ]
-    },
-    {
-        "id": "fcc3eaa333465f7d",
-        "type": "debug",
-        "z": "f77cf9fde1cf79bb",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 660,
-        "y": 240,
-        "wires": []
     },
     {
         "id": "e5b9d765e1dda3d2",
@@ -115,8 +245,472 @@
         "upsert": false,
         "multi": false,
         "operation": "store",
-        "x": 700,
-        "y": 280,
+        "x": 500,
+        "y": 340,
         "wires": []
+    },
+    {
+        "id": "8659f83bef704214",
+        "type": "ui_chart",
+        "z": "f77cf9fde1cf79bb",
+        "name": "",
+        "group": "9b1e2b313716964f",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "label": "Accelerometer X",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 940,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "eea67cf18ac44240",
+        "type": "function",
+        "z": "f77cf9fde1cf79bb",
+        "name": "Get accelerometer x axis",
+        "func": "msg.topic = \"accx\";\nmsg.payload = msg.payload.accx;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 710,
+        "y": 100,
+        "wires": [
+            [
+                "8659f83bef704214"
+            ]
+        ]
+    },
+    {
+        "id": "4f99bcdf54ec2990",
+        "type": "function",
+        "z": "f77cf9fde1cf79bb",
+        "name": "Get accelerometer y axis",
+        "func": "msg.topic = \"accy\";\nmsg.payload = msg.payload.accy;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 770,
+        "y": 160,
+        "wires": [
+            [
+                "6dac9a9219acee65"
+            ]
+        ]
+    },
+    {
+        "id": "b22f188fa08f6001",
+        "type": "debug",
+        "z": "f77cf9fde1cf79bb",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 480,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "6dac9a9219acee65",
+        "type": "ui_chart",
+        "z": "f77cf9fde1cf79bb",
+        "name": "",
+        "group": "9b1e2b313716964f",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "label": "Accelerometer Y",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1000,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "87f97530ebcf6158",
+        "type": "function",
+        "z": "f77cf9fde1cf79bb",
+        "name": "Get accelerometer z axis",
+        "func": "msg.topic = \"accz\";\nmsg.payload = msg.payload.accz;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 770,
+        "y": 220,
+        "wires": [
+            [
+                "5604c4624fdeaa83"
+            ]
+        ]
+    },
+    {
+        "id": "5604c4624fdeaa83",
+        "type": "ui_chart",
+        "z": "f77cf9fde1cf79bb",
+        "name": "",
+        "group": "9b1e2b313716964f",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "label": "Accelerometer Z",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1000,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "274877560f200da9",
+        "type": "function",
+        "z": "f77cf9fde1cf79bb",
+        "name": "Get gyroscope x axis",
+        "func": "msg.topic = \"gyrox\";\nmsg.payload = msg.payload.gyrox;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 280,
+        "wires": [
+            [
+                "a285375b696f8bfc"
+            ]
+        ]
+    },
+    {
+        "id": "a285375b696f8bfc",
+        "type": "ui_chart",
+        "z": "f77cf9fde1cf79bb",
+        "name": "",
+        "group": "5172b23e5fd23e6f",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "Gyroscope X",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 990,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6da929748f9ef43a",
+        "type": "function",
+        "z": "f77cf9fde1cf79bb",
+        "name": "Get gyroscope y axis",
+        "func": "msg.topic = \"gyroy\";\nmsg.payload = msg.payload.gyroy;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 340,
+        "wires": [
+            [
+                "ca730fc27bdb3153"
+            ]
+        ]
+    },
+    {
+        "id": "ca730fc27bdb3153",
+        "type": "ui_chart",
+        "z": "f77cf9fde1cf79bb",
+        "name": "",
+        "group": "5172b23e5fd23e6f",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "label": "Gyroscope Y",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 990,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "50f503cc3a4152a0",
+        "type": "function",
+        "z": "f77cf9fde1cf79bb",
+        "name": "Get gyroscope z axis",
+        "func": "msg.topic = \"gyroz\";\nmsg.payload = msg.payload.gyroz;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 400,
+        "wires": [
+            [
+                "829a4b70f257ca55"
+            ]
+        ]
+    },
+    {
+        "id": "829a4b70f257ca55",
+        "type": "ui_chart",
+        "z": "f77cf9fde1cf79bb",
+        "name": "",
+        "group": "5172b23e5fd23e6f",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "label": "Gyroscope Z",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 990,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6c936b6e5505d165",
+        "type": "function",
+        "z": "f77cf9fde1cf79bb",
+        "name": "Temperature",
+        "func": "msg.topic = \"temperature\";\nmsg.payload = msg.payload.temp;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 460,
+        "wires": [
+            [
+                "bf4ff94db5ee2cb6"
+            ]
+        ]
+    },
+    {
+        "id": "bf4ff94db5ee2cb6",
+        "type": "ui_chart",
+        "z": "f77cf9fde1cf79bb",
+        "name": "",
+        "group": "f17b854dc50a79ed",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "Temperature",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9368bb",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 890,
+        "y": 460,
+        "wires": [
+            []
+        ]
     }
 ]
