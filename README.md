@@ -3,8 +3,8 @@ A real-time fall detection system using ESP32, MPU6050, and MQTT. Collects accel
 
 # Docker
 
-To start docker with a bind mount volume (-v option), the root path, run:
+To start docker, run this command in the root directory:
 
 ```
-docker run -it -p 1880:1880 -v ./src/node-red:/data --name mynodered nodered/node-red
+docker-compose up
 ```
