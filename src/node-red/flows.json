@@ -209,12 +209,11 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 250,
+        "x": 230,
         "y": 260,
         "wires": [
             [
-                "89a19b586c0b4498",
-                "adcc06ff83ec5ff8"
+                "89a19b586c0b4498"
             ]
         ]
     },
@@ -230,11 +229,10 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 440,
+        "x": 420,
         "y": 260,
         "wires": [
             [
-                "e5b9d765e1dda3d2",
                 "eea67cf18ac44240",
                 "4f99bcdf54ec2990",
                 "87f97530ebcf6158",
@@ -244,21 +242,6 @@
                 "6c936b6e5505d165"
             ]
         ]
-    },
-    {
-        "id": "e5b9d765e1dda3d2",
-        "type": "mongodb out",
-        "z": "f77cf9fde1cf79bb",
-        "mongodb": "4620b4b43bdc0606",
-        "name": "persists to MongoDB",
-        "collection": "mpu6050",
-        "payonly": true,
-        "upsert": false,
-        "multi": false,
-        "operation": "store",
-        "x": 460,
-        "y": 340,
-        "wires": []
     },
     {
         "id": "8659f83bef704214",
@@ -298,7 +281,7 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 940,
+        "x": 1000,
         "y": 100,
         "wires": [
             []
@@ -316,7 +299,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 710,
+        "x": 770,
         "y": 100,
         "wires": [
             [
@@ -656,7 +639,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 690,
+        "x": 730,
         "y": 460,
         "wires": [
             [
@@ -702,7 +685,7 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 890,
+        "x": 990,
         "y": 460,
         "wires": [
             []
@@ -721,7 +704,7 @@
         "finalize": "",
         "libs": [],
         "x": 420,
-        "y": 200,
+        "y": 560,
         "wires": [
             [
                 "bd1c22e91e814f2f"
@@ -743,8 +726,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 380,
-        "y": 120,
+        "x": 620,
+        "y": 560,
         "wires": [
             [
                 "72ce1cb5f6ee6870",
@@ -769,8 +752,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 850,
-        "y": 40,
+        "x": 1030,
+        "y": 580,
         "wires": []
     },
     {
@@ -785,8 +768,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 420,
-        "y": 20,
+        "x": 800,
+        "y": 540,
         "wires": []
     },
     {
@@ -806,12 +789,89 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 1,
-        "x": 650,
-        "y": 40,
+        "x": 830,
+        "y": 580,
         "wires": [
             [
                 "142155d0b1d4028a"
             ]
         ]
+    },
+    {
+        "id": "67371facbe3f8267",
+        "type": "mqtt in",
+        "z": "f77cf9fde1cf79bb",
+        "name": "",
+        "topic": "sensor/data",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "f62c31ff.5eb028",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 230,
+        "y": 560,
+        "wires": [
+            [
+                "adcc06ff83ec5ff8"
+            ]
+        ]
+    },
+    {
+        "id": "863c979ee744daaf",
+        "type": "mqtt in",
+        "z": "f77cf9fde1cf79bb",
+        "name": "",
+        "topic": "sensor/data",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "f62c31ff.5eb028",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 230,
+        "y": 660,
+        "wires": [
+            [
+                "7854126b628c07d1"
+            ]
+        ]
+    },
+    {
+        "id": "7854126b628c07d1",
+        "type": "function",
+        "z": "f77cf9fde1cf79bb",
+        "name": "Add timestamp",
+        "func": "msg.payload.timestamp = new Date().toISOString();\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 660,
+        "wires": [
+            [
+                "3988f7de68acd3d9"
+            ]
+        ]
+    },
+    {
+        "id": "3988f7de68acd3d9",
+        "type": "mongodb out",
+        "z": "f77cf9fde1cf79bb",
+        "mongodb": "4620b4b43bdc0606",
+        "name": "persists to MongoDB",
+        "collection": "mpu6050",
+        "payonly": true,
+        "upsert": false,
+        "multi": false,
+        "operation": "store",
+        "x": 640,
+        "y": 660,
+        "wires": []
     }
 ]
