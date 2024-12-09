@@ -155,7 +155,7 @@
     {
         "id": "9b1e2b313716964f",
         "type": "ui_group",
-        "name": "Readings",
+        "name": "Accelerometer",
         "tab": "b93b9982e8241eda",
         "order": 1,
         "disp": true,
@@ -166,11 +166,35 @@
     {
         "id": "5172b23e5fd23e6f",
         "type": "ui_group",
-        "name": "Group 2",
+        "name": "Gyroscope",
         "tab": "b93b9982e8241eda",
         "order": 2,
         "disp": true,
-        "width": 6
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "f17b854dc50a79ed",
+        "type": "ui_group",
+        "name": "Temperature",
+        "tab": "b93b9982e8241eda",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "552c1fc559d5da93",
+        "type": "ui_group",
+        "name": "Alerts",
+        "tab": "b93b9982e8241eda",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "199df355e295d45f",
@@ -185,11 +209,12 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 330,
+        "x": 250,
         "y": 260,
         "wires": [
             [
-                "89a19b586c0b4498"
+                "89a19b586c0b4498",
+                "adcc06ff83ec5ff8"
             ]
         ]
     },
@@ -205,14 +230,13 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 520,
+        "x": 440,
         "y": 260,
         "wires": [
             [
                 "e5b9d765e1dda3d2",
                 "eea67cf18ac44240",
                 "4f99bcdf54ec2990",
-                "b22f188fa08f6001",
                 "87f97530ebcf6158",
                 "274877560f200da9",
                 "6da929748f9ef43a",
@@ -232,7 +256,7 @@
         "upsert": false,
         "multi": false,
         "operation": "store",
-        "x": 500,
+        "x": 460,
         "y": 340,
         "wires": []
     },
@@ -319,22 +343,6 @@
                 "6dac9a9219acee65"
             ]
         ]
-    },
-    {
-        "id": "b22f188fa08f6001",
-        "type": "debug",
-        "z": "f77cf9fde1cf79bb",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 480,
-        "y": 160,
-        "wires": []
     },
     {
         "id": "6dac9a9219acee65",
@@ -469,8 +477,8 @@
         "type": "ui_chart",
         "z": "f77cf9fde1cf79bb",
         "name": "",
-        "group": "9b1e2b313716964f",
-        "order": 4,
+        "group": "5172b23e5fd23e6f",
+        "order": 1,
         "width": 0,
         "height": 0,
         "label": "Gyroscope X",
@@ -533,8 +541,8 @@
         "type": "ui_chart",
         "z": "f77cf9fde1cf79bb",
         "name": "",
-        "group": "9b1e2b313716964f",
-        "order": 5,
+        "group": "5172b23e5fd23e6f",
+        "order": 2,
         "width": 0,
         "height": 0,
         "label": "Gyroscope Y",
@@ -597,8 +605,8 @@
         "type": "ui_chart",
         "z": "f77cf9fde1cf79bb",
         "name": "",
-        "group": "9b1e2b313716964f",
-        "order": 6,
+        "group": "5172b23e5fd23e6f",
+        "order": 3,
         "width": 0,
         "height": 0,
         "label": "Gyroscope Z",
@@ -661,7 +669,7 @@
         "type": "ui_chart",
         "z": "f77cf9fde1cf79bb",
         "name": "",
-        "group": "5172b23e5fd23e6f",
+        "group": "f17b854dc50a79ed",
         "order": 1,
         "width": 0,
         "height": 0,
@@ -699,5 +707,86 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "adcc06ff83ec5ff8",
+        "type": "function",
+        "z": "f77cf9fde1cf79bb",
+        "name": "Verify Threshold",
+        "func": "let accx = msg.payload.accx;\nlet accy = msg.payload.accy;\nlet accz = msg.payload.accz;\n\nlet accelerationMagnitude = Math.sqrt(accx*accx + accy*accy + accz*accz);\n\nlet alertThreshold = 25;\n\nlet isFallDetected = accelerationMagnitude > alertThreshold;\n\nif (isFallDetected) {\n    msg.payload.isAlert = true;\n    msg.payload.alertMessage = \"Limite alcançado! Possível queda detectada.\";\n} else {\n    msg.payload.isAlert = false;\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 200,
+        "wires": [
+            [
+                "bd1c22e91e814f2f"
+            ]
+        ]
+    },
+    {
+        "id": "bd1c22e91e814f2f",
+        "type": "switch",
+        "z": "f77cf9fde1cf79bb",
+        "name": "Is fall detected?",
+        "property": "payload.isAlert",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 460,
+        "y": 120,
+        "wires": [
+            [
+                "142155d0b1d4028a",
+                "72ce1cb5f6ee6870"
+            ]
+        ]
+    },
+    {
+        "id": "142155d0b1d4028a",
+        "type": "ui_text",
+        "z": "f77cf9fde1cf79bb",
+        "group": "552c1fc559d5da93",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Alert",
+        "format": "{{msg.payload.alertMessage}}",
+        "layout": "col-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 590,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "72ce1cb5f6ee6870",
+        "type": "debug",
+        "z": "f77cf9fde1cf79bb",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 420,
+        "y": 40,
+        "wires": []
     }
 ]
