@@ -1,0 +1,16 @@
+@startuml
+actor Idoso
+participant MPU6050
+participant ESP32
+participant "Broker MQTT (Mosquitto)"
+participant "Node-RED"
+database MongoDB
+participant "Dashboard"
+
+Idoso -> MPU6050 : Movimento
+MPU6050 -> ESP32 : Dados Inerciais
+ESP32 -> "Broker MQTT (Mosquitto)" : Publicação MQTT
+"Broker MQTT (Mosquitto)" -> "Node-RED" : Subscrição MQTT
+"Node-RED" -> MongoDB : Armazenamento
+"Node-RED" -> "Dashboard" : Exibição
+@enduml
