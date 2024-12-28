@@ -9,6 +9,6 @@ To start docker, run this command in the root directory:
 docker-compose up
 ```
 
-# Arquitetura do Sistema
+# System's architecture
 
-![Arquitetura do Sistema](images/diagrama-uml.png)
+![System's architecture](images/diagrama-uml.png)
