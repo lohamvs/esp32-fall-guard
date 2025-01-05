@@ -209,7 +209,7 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 250,
+        "x": 230,
         "y": 260,
         "wires": [
             [
@@ -229,7 +229,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 440,
+        "x": 420,
         "y": 260,
         "wires": [
             [

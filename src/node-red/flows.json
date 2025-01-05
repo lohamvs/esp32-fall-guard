@@ -814,7 +814,8 @@
         "y": 560,
         "wires": [
             [
-                "adcc06ff83ec5ff8"
+                "adcc06ff83ec5ff8",
+                "267f04636f889c3c"
             ]
         ]
     },
@@ -872,6 +873,22 @@
         "operation": "store",
         "x": 640,
         "y": 660,
+        "wires": []
+    },
+    {
+        "id": "267f04636f889c3c",
+        "type": "debug",
+        "z": "f77cf9fde1cf79bb",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 350,
+        "y": 520,
         "wires": []
     }
 ]

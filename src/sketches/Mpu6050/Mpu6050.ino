@@ -5,9 +5,9 @@
 #include <Wire.h>
 #include <ArduinoJson.h>
 
-const char* ssid = "FazOElon";
-const char* password =  "papainoel"; 
-const char* mqtt_server = "192.168.1.124";
+const char* ssid = "ssid";
+const char* password =  "password"; 
+const char* mqtt_server = "0.0.0.0";
 long lastTemp = 0;
 
 Adafruit_MPU6050 mpu;
@@ -85,21 +85,14 @@ void setup_wifi() {
 
   WiFi.begin(ssid, password);
 
-  Serial.print("ALOU");
-
   unsigned long startAttemptTime = millis();
 
-  Serial.print("ALOU");
-
   while (WiFi.status() != WL_CONNECTED) {
-    Serial.print("ALOU");
     delay(500); 
-    Serial.print("ALOU");
     if (millis() - startAttemptTime > 10000) { 
       Serial.println("WiFi connection timeout.");
       ESP.restart();
     }
-    Serial.print("ALOU");
   }
 
   Serial.println("");
