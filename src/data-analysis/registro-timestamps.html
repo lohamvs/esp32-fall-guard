@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Timestamps</title>
+  <style>
+    #registerButton {
+      width: 100%;
+      height: 200px;
+      font-size: 2rem;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    #registerButton:hover {
+      background-color: #45a049;
+    }
+
+    ul {
+      margin-top: 20px;
+      padding: 0;
+      list-style-type: none;
+    }
+
+    li {
+      font-size: 1.2rem;
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Registro de Timestamps</h1>
+  <button id="registerButton">Registrar Timestamp</button>
+  <ul id="timestampsList"></ul>
+
+  <script>
+    // Array para armazenar os timestamps
+    const timestamps = [];
+
+    // Função para registrar o timestamp
+    function registerTimestamp() {
+      const now = new Date();
+      timestamps.push(now.toISOString());
+
+      // Atualizar a lista na interface
+      updateTimestampList();
+    }
+
+    // Função para atualizar a lista exibida na página
+    function updateTimestampList() {
+      const listElement = document.getElementById('timestampsList');
+      listElement.innerHTML = ''; // Limpar a lista
+
+      timestamps.forEach((timestamp, index) => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `${index + 1}: ${timestamp}`;
+        listElement.appendChild(listItem);
+      });
+    }
+
+    // Adicionar o evento ao botão
+    document.getElementById('registerButton').addEventListener('click', registerTimestamp);
+  </script>
+</body>
+</html>

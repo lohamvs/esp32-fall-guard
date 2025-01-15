@@ -7,7 +7,7 @@
 
 const char* ssid = "ssid";
 const char* password =  "password"; 
-const char* mqtt_server = "0.0.0.0";
+const char* mqtt_server = "192.168.1.124";
 long lastTemp = 0;
 
 Adafruit_MPU6050 mpu;
@@ -45,7 +45,7 @@ void loop()
   
   long now = millis();
 
-  if (now - lastTemp > 1000) {
+  if (now - lastTemp > 200) {
     lastTemp = now;
     
     StaticJsonDocument<192> doc;
@@ -53,10 +53,6 @@ void loop()
     doc["accx"] = a.acceleration.x;
     doc["accy"] = a.acceleration.y;
     doc["accz"] = a.acceleration.z;
-    doc["gyrox"] = g.gyro.x;
-    doc["gyroy"] = g.gyro.y;
-    doc["gyroz"] = g.gyro.z;
-    doc["temp"] = temp.temperature;
 
     String output;
     serializeJson(doc, output);
@@ -109,7 +105,6 @@ void reconnect()
     if (client.connect("ESP32Client"))
     {
       Serial.println("Conectado"); 
-      client.publish("sensor/data", "Giroscópio acelerômetro conectado.");
       
       //Envia a mensagem ao servidor MQTT
       client.subscribe("sensor/data");
@@ -135,16 +130,11 @@ void configureMpu6050()
   }
   Serial.println("MPU6050 encontrado!");
 
-  mpu.setAccelerometerRange(MPU6050_RANGE_2_G);
+  mpu.setAccelerometerRange(MPU6050_RANGE_4_G);
   Serial.print("Intervalo do acelerômetro: +- ");
   Serial.print(mpu.getAccelerometerRange());
   
-  mpu.setGyroRange(MPU6050_RANGE_500_DEG);
-  Serial.print("Intervalo do giroscópio: +- ");
-  Serial.print(mpu.getGyroRange());
-  Serial.println(" deg/s");
-  
-  mpu.setFilterBandwidth(MPU6050_BAND_5_HZ);
+  mpu.setFilterBandwidth(MPU6050_BAND_44_HZ);
   Serial.print("Filtro de largura de banda: ");
   Serial.print(mpu.getFilterBandwidth());
   Serial.println(" Hz");

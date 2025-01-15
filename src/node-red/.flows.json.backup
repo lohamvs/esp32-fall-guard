@@ -159,29 +159,7 @@
         "tab": "b93b9982e8241eda",
         "order": 1,
         "disp": true,
-        "width": "6",
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "5172b23e5fd23e6f",
-        "type": "ui_group",
-        "name": "Gyroscope",
-        "tab": "b93b9982e8241eda",
-        "order": 2,
-        "disp": true,
-        "width": "6",
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "f17b854dc50a79ed",
-        "type": "ui_group",
-        "name": "Temperature",
-        "tab": "b93b9982e8241eda",
-        "order": 3,
-        "disp": true,
-        "width": "6",
+        "width": 10,
         "collapse": false,
         "className": ""
     },
@@ -190,9 +168,20 @@
         "type": "ui_group",
         "name": "Alerts",
         "tab": "b93b9982e8241eda",
-        "order": 4,
+        "order": 3,
         "disp": true,
-        "width": "6",
+        "width": 10,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "866d53aa408ea3c4",
+        "type": "ui_group",
+        "name": "Acceleration Magnitude",
+        "tab": "b93b9982e8241eda",
+        "order": 2,
+        "disp": true,
+        "width": "10",
         "collapse": false,
         "className": ""
     },
@@ -209,8 +198,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 230,
-        "y": 260,
+        "x": 190,
+        "y": 240,
         "wires": [
             [
                 "89a19b586c0b4498"
@@ -229,17 +218,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 420,
-        "y": 260,
+        "x": 240,
+        "y": 320,
         "wires": [
             [
-                "eea67cf18ac44240",
-                "4f99bcdf54ec2990",
-                "87f97530ebcf6158",
-                "274877560f200da9",
-                "6da929748f9ef43a",
-                "50f503cc3a4152a0",
-                "6c936b6e5505d165"
+                "36e87767e0a3ecd9"
             ]
         ]
     },
@@ -250,8 +233,8 @@
         "name": "",
         "group": "9b1e2b313716964f",
         "order": 1,
-        "width": "0",
-        "height": "0",
+        "width": 0,
+        "height": 0,
         "label": "Accelerometer X",
         "chartType": "line",
         "legend": "false",
@@ -281,8 +264,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1000,
-        "y": 100,
+        "x": 960,
+        "y": 180,
         "wires": [
             []
         ]
@@ -299,8 +282,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 770,
-        "y": 100,
+        "x": 730,
+        "y": 180,
         "wires": [
             [
                 "8659f83bef704214"
@@ -319,8 +302,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 770,
-        "y": 160,
+        "x": 730,
+        "y": 240,
         "wires": [
             [
                 "6dac9a9219acee65"
@@ -334,8 +317,8 @@
         "name": "",
         "group": "9b1e2b313716964f",
         "order": 2,
-        "width": "0",
-        "height": "0",
+        "width": 0,
+        "height": 0,
         "label": "Accelerometer Y",
         "chartType": "line",
         "legend": "false",
@@ -365,8 +348,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1000,
-        "y": 160,
+        "x": 960,
+        "y": 240,
         "wires": [
             []
         ]
@@ -383,8 +366,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 770,
-        "y": 220,
+        "x": 730,
+        "y": 300,
         "wires": [
             [
                 "5604c4624fdeaa83"
@@ -429,200 +412,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1000,
-        "y": 220,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "274877560f200da9",
-        "type": "function",
-        "z": "f77cf9fde1cf79bb",
-        "name": "Get gyroscope x axis",
-        "func": "msg.topic = \"gyrox\";\nmsg.payload = msg.payload.gyrox;\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 760,
-        "y": 280,
-        "wires": [
-            [
-                "a285375b696f8bfc"
-            ]
-        ]
-    },
-    {
-        "id": "a285375b696f8bfc",
-        "type": "ui_chart",
-        "z": "f77cf9fde1cf79bb",
-        "name": "",
-        "group": "5172b23e5fd23e6f",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "label": "Gyroscope X",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": 1,
-        "removeOlderPoints": "",
-        "removeOlderUnit": "3600",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "useDifferentColor": false,
-        "className": "",
-        "x": 990,
-        "y": 280,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "6da929748f9ef43a",
-        "type": "function",
-        "z": "f77cf9fde1cf79bb",
-        "name": "Get gyroscope y axis",
-        "func": "msg.topic = \"gyroy\";\nmsg.payload = msg.payload.gyroy;\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 760,
-        "y": 340,
-        "wires": [
-            [
-                "ca730fc27bdb3153"
-            ]
-        ]
-    },
-    {
-        "id": "ca730fc27bdb3153",
-        "type": "ui_chart",
-        "z": "f77cf9fde1cf79bb",
-        "name": "",
-        "group": "5172b23e5fd23e6f",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "label": "Gyroscope Y",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": 1,
-        "removeOlderPoints": "",
-        "removeOlderUnit": "3600",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "useDifferentColor": false,
-        "className": "",
-        "x": 990,
-        "y": 340,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "50f503cc3a4152a0",
-        "type": "function",
-        "z": "f77cf9fde1cf79bb",
-        "name": "Get gyroscope z axis",
-        "func": "msg.topic = \"gyroz\";\nmsg.payload = msg.payload.gyroz;\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 760,
-        "y": 400,
-        "wires": [
-            [
-                "829a4b70f257ca55"
-            ]
-        ]
-    },
-    {
-        "id": "829a4b70f257ca55",
-        "type": "ui_chart",
-        "z": "f77cf9fde1cf79bb",
-        "name": "",
-        "group": "5172b23e5fd23e6f",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "label": "Gyroscope Z",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": 1,
-        "removeOlderPoints": "",
-        "removeOlderUnit": "3600",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "useDifferentColor": false,
-        "className": "",
-        "x": 990,
-        "y": 400,
+        "x": 960,
+        "y": 300,
         "wires": [
             []
         ]
@@ -631,16 +422,16 @@
         "id": "6c936b6e5505d165",
         "type": "function",
         "z": "f77cf9fde1cf79bb",
-        "name": "Temperature",
-        "func": "msg.topic = \"temperature\";\nmsg.payload = msg.payload.temp;\nreturn msg;",
+        "name": "Get Acceleration Magnitude",
+        "func": "msg.topic = \"accelerationMagnitude\";\nmsg.payload = msg.payload.accelerationMagnitude;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 730,
-        "y": 460,
+        "x": 740,
+        "y": 360,
         "wires": [
             [
                 "bf4ff94db5ee2cb6"
@@ -652,11 +443,11 @@
         "type": "ui_chart",
         "z": "f77cf9fde1cf79bb",
         "name": "",
-        "group": "f17b854dc50a79ed",
+        "group": "866d53aa408ea3c4",
         "order": 1,
         "width": 0,
         "height": 0,
-        "label": "Temperature",
+        "label": "Acceleration Magnitude",
         "chartType": "line",
         "legend": "false",
         "xformat": "HH:mm:ss",
@@ -686,7 +477,7 @@
         "useDifferentColor": false,
         "className": "",
         "x": 990,
-        "y": 460,
+        "y": 360,
         "wires": [
             []
         ]
@@ -696,18 +487,20 @@
         "type": "function",
         "z": "f77cf9fde1cf79bb",
         "name": "Verify Threshold",
-        "func": "let accx = msg.payload.accx;\nlet accy = msg.payload.accy;\nlet accz = msg.payload.accz;\n\nlet accelerationMagnitude = Math.sqrt(accx*accx + accy*accy + accz*accz);\n\nlet alertThreshold = 25;\n\nlet isFallDetected = accelerationMagnitude > alertThreshold;\n\nif (isFallDetected) {\n    msg.payload.isAlert = true;\n    msg.payload.alertMessage = \"Limite alcançado! Possível queda detectada.\";\n} else {\n    msg.payload.isAlert = false;\n}\n\nreturn msg;\n",
+        "func": "let alertThreshold = 25;\n\nlet isFallDetected = msg.payload.accelerationMagnitude > alertThreshold;\n\nif (isFallDetected) {\n    msg.payload.isAlert = true;\n    msg.payload.alertMessage = \"Limite alcançado! Possível queda detectada.\";\n} else {\n    msg.payload.isAlert = false;\n}\n\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 420,
-        "y": 560,
+        "x": 560,
+        "y": 500,
         "wires": [
             [
-                "bd1c22e91e814f2f"
+                "bd1c22e91e814f2f",
+                "d19b8be617fb0578",
+                "3777f8c08385566d"
             ]
         ]
     },
@@ -726,8 +519,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 620,
-        "y": 560,
+        "x": 780,
+        "y": 520,
         "wires": [
             [
                 "72ce1cb5f6ee6870",
@@ -740,7 +533,7 @@
         "type": "ui_text",
         "z": "f77cf9fde1cf79bb",
         "group": "552c1fc559d5da93",
-        "order": 0,
+        "order": 1,
         "width": 0,
         "height": 0,
         "name": "",
@@ -752,8 +545,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 1030,
-        "y": 580,
+        "x": 1190,
+        "y": 520,
         "wires": []
     },
     {
@@ -768,8 +561,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 800,
-        "y": 540,
+        "x": 960,
+        "y": 440,
         "wires": []
     },
     {
@@ -789,8 +582,8 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 1,
-        "x": 830,
-        "y": 580,
+        "x": 990,
+        "y": 520,
         "wires": [
             [
                 "142155d0b1d4028a"
@@ -798,80 +591,58 @@
         ]
     },
     {
-        "id": "67371facbe3f8267",
-        "type": "mqtt in",
+        "id": "d19b8be617fb0578",
+        "type": "mongodb out",
         "z": "f77cf9fde1cf79bb",
-        "name": "",
-        "topic": "sensor/data",
-        "qos": "1",
-        "datatype": "auto-detect",
-        "broker": "f62c31ff.5eb028",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 230,
-        "y": 560,
-        "wires": [
-            [
-                "adcc06ff83ec5ff8"
-            ]
-        ]
+        "mongodb": "4620b4b43bdc0606",
+        "name": "persists to MongoDB",
+        "collection": "falls",
+        "payonly": true,
+        "upsert": false,
+        "multi": false,
+        "operation": "store",
+        "x": 800,
+        "y": 600,
+        "wires": []
     },
     {
-        "id": "863c979ee744daaf",
-        "type": "mqtt in",
-        "z": "f77cf9fde1cf79bb",
-        "name": "",
-        "topic": "sensor/data",
-        "qos": "1",
-        "datatype": "auto-detect",
-        "broker": "f62c31ff.5eb028",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 230,
-        "y": 660,
-        "wires": [
-            [
-                "7854126b628c07d1"
-            ]
-        ]
-    },
-    {
-        "id": "7854126b628c07d1",
+        "id": "36e87767e0a3ecd9",
         "type": "function",
         "z": "f77cf9fde1cf79bb",
-        "name": "Add timestamp",
-        "func": "msg.payload.timestamp = new Date().toISOString();\n\nreturn msg;",
+        "name": "Set Acceleration Magnitude",
+        "func": "let accx = msg.payload.accx;\nlet accy = msg.payload.accy;\nlet accz = msg.payload.accz;\n\nlet accelerationMagnitude = Math.sqrt(accx*accx + accy*accy + accz*accz);\n\nmsg.payload.accelerationMagnitude = accelerationMagnitude;\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 420,
-        "y": 660,
+        "x": 300,
+        "y": 400,
         "wires": [
             [
-                "3988f7de68acd3d9"
+                "adcc06ff83ec5ff8",
+                "6c936b6e5505d165",
+                "87f97530ebcf6158",
+                "4f99bcdf54ec2990",
+                "eea67cf18ac44240"
             ]
         ]
     },
     {
-        "id": "3988f7de68acd3d9",
-        "type": "mongodb out",
+        "id": "3777f8c08385566d",
+        "type": "debug",
         "z": "f77cf9fde1cf79bb",
-        "mongodb": "4620b4b43bdc0606",
-        "name": "persists to MongoDB",
-        "collection": "mpu6050",
-        "payonly": true,
-        "upsert": false,
-        "multi": false,
-        "operation": "store",
-        "x": 640,
-        "y": 660,
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 440,
         "wires": []
     }
 ]
